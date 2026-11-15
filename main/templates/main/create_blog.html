@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Добавление статьи — Bloodborne{% endblock %}
+
+{% block content %}
+
+<h1>Добавление статьи</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Добавить статью</button>
+</form>
+
+{% endblock %}

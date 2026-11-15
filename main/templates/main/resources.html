@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang='ru'>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Полезные ресурсы - Bloodborne</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}?v=2">
+</head>
+
+<body>
+<header>
+    <a href="{% url 'home' %}">
+        <img src="{% static 'main/images/logo.jpg' %}" alt="Bloodborne">
+    </a>
+    <nav>
+        <a href="{% url 'home' %}">Главное</a>
+        <a href="{% url 'about' %}">О Bloodborne</a>
+        <a href="{% url 'resources' %}">Полезные ресурсы</a>
+        <a href="{% url 'pool' %}">Обратная связь</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Полезные ресурсы</h1>
+    <div class="resources">
+        <div class="resource">
+            <a href="https://www.bloodborne-wiki.com/" target="_blank">
+                <img src="{% static 'main/images/wiki.png' %}" alt="Bloodborne wiki">
+            </a>
+
+            <h2>Bloodborne Wiki</h2>
+            <p>
+                Подробная информация об оружии, предметах, персонажах, боссах и локациях Bloodborne.
+            </p>
+            <a class="resource-link"
+                href="https://www.bloodborne-wiki.com/"
+                target="_blank">Перейти на сайт</a>
+        </div>
+    </div>
+</main>
+</body>
+
+</html>

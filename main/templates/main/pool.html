@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Обратная связь — Bloodborne{% endblock %}
+
+{% block content %}
+
+<h1>Обратная связь</h1>
+
+{% if success %}
+
+    <h2>Спасибо за ваш отзыв!</h2>
+    <p>Ваши ответы успешно приняты.</p>
+
+    <h2>Отправленные данные:</h2>
+
+    <p><strong>Имя:</strong> {{ data.name }}</p>
+    <p><strong>Оценка сайта:</strong> {{ data.rating }}</p>
+    <p><strong>Частота посещения:</strong> {{ data.frequency }}</p>
+    <p><strong>Понравилось:</strong> {{ data.liked|join:", " }}</p>
+    <p><strong>Пожелания:</strong> {{ data.wishes|default:"Не указаны" }}</p>
+
+{% else %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Отправить отзыв</button>
+    </form>
+
+{% endif %}
+
+<script>
+    const button = document.querySelector('button');
+
+    if (button) {
+        button.addEventListener('mouseover', function() {
+            button.style.color = 'red';
+        });
+
+        button.addEventListener('mouseout', function() {
+            button.style.color = '';
+        });
+    }
+
+    const fields = document.querySelectorAll(
+        'input:not([type="radio"]):not([type="checkbox"]), select, textarea'
+    );
+
+    fields.forEach(function(field) {
+        field.addEventListener('focus', function() {
+            field.style.backgroundColor = '#555';
+        });
+
+        field.addEventListener('blur', function() {
+            field.style.backgroundColor = '';
+        });
+    });
+</script>
+
+{% endblock %}

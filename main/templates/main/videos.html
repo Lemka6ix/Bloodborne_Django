@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Видео — Bloodborne{% endblock %}
+
+{% block content %}
+
+<h1>Видео</h1>
+
+<div class="video-container">
+    <h2>Трейлер</h2>
+    <video controls>
+        <source src="/media/videos/video1.mp4" type="video/mp4">
+        Ваш браузер не поддерживает воспроизведение видео.
+    </video>
+</div>
+
+<div class="video-container">
+    <h2>Трейлер DLC</h2>
+    <video controls>
+        <source src="/media/videos/video2.mp4" type="video/mp4">
+        Ваш браузер не поддерживает воспроизведение видео.
+    </video>
+</div>
+
+{% endblock %}

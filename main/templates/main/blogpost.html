@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ post.title }} — Bloodborne{% endblock %}
+
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+{% if post.image %}
+    <img class="blog-image" src="{{ post.image.url }}" alt="{{ post.title }}">
+{% endif %}
+
+<p>{{ post.pub_date|date:"d.m.Y H:i" }}</p>
+
+<div class="blog-content">
+    {{ post.content|linebreaks }}
+</div>
+
+<a class="blog-back" href="{% url 'blog' %}">Назад</a>
+
+<hr>
+
+<h2>Комментарии</h2>
+
+{% for comment in comments %}
+    <article class="comment">
+        <h3>{{ comment.author.username }}</h3>
+        <p>{{ comment.date|date:"d.m.Y H:i" }}</p>
+        <p>{{ comment.text|linebreaks }}</p>
+    </article>
+{% empty %}
+    <p>Пока нет комментариев.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <button type="button" id="show-comment-form">
+        Оставить комментарий
+    </button>
+
+    <div id="comment-form" hidden>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить комментарий</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('show-comment-form').addEventListener('click', function() {
+            document.getElementById('comment-form').hidden = false;
+            this.hidden = true;
+        });
+    </script>
+{% else %}
+    <p>
+        <a href="{% url 'login' %}">Войдите</a>,
+        чтобы оставить комментарий.
+    </p>
+{% endif %}
+
+{% endblock %}

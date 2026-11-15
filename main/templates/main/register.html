@@ -1,31 +1,59 @@
+
 {% extends 'main/base.html' %}
 {% load static %}
 
 {% block content %}
 
-<div class="resources">
+<main class="auth-page">
 
-    <div class="resource">
-        <img src="{% static 'main/images/wiki.png' %}" alt="Bloodborne Wiki">
-        <h2>Bloodborne Wiki</h2>
-        <p>Вики-энциклопедия с информацией об игре, персонажах, оружии и локациях.</p>
-        <a href="https://bloodborne.wiki.fextralife.com/Bloodborne+Wiki" class="resource-link" target="_blank">Перейти на сайт</a>
+    <div class="auth-card">
+
+        <h1>Создание аккаунта</h1>
+        <p class="auth-subtitle">Присоединяйтесь к миру Bloodborne</p>
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+
+            <div class="auth-field">
+                <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <p class="auth-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="auth-field">
+                <label for="{{ form.password1.id_for_label }}">Пароль</label>
+                {{ form.password1 }}
+                {% for error in form.password1.errors %}
+                    <p class="auth-error">{{ error }}</p>
+                {% endfor %}
+                
+            </div>
+
+            <div class="auth-field">
+                <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
+                {{ form.password2 }}
+                {% for error in form.password2.errors %}
+                    <p class="auth-error">{{ error }}</p>
+                {% endfor %}
+                <small>Повторите введённый пароль.</small>
+            </div>
+
+            {% for error in form.non_field_errors %}
+                <p class="auth-error">{{ error }}</p>
+            {% endfor %}
+
+            <button type="submit" class="auth-button">Зарегистрироваться</button>
+        </form>
+
+        <p class="auth-footer">
+            Уже есть аккаунт?
+            <a href="{% url 'login' %}">Войти</a>
+        </p>
+
     </div>
 
-    <div class="resource">
-        <img src="{% static 'main/images/fandom.png' %}" alt="Bloodborne Fandom">
-        <h2>Bloodborne Fandom</h2>
-        <p>Материалы сообщества, посвящённые миру Bloodborne.</p>
-        <a href="https://bloodborne.fandom.com/wiki/Bloodborne_Wiki" class="resource-link" target="_blank">Перейти на сайт</a>
-    </div>
-
-    <div class="resource">
-        <img src="{% static 'main/images/playstation.png' %}" alt="PlayStation">
-        <h2>PlayStation</h2>
-        <p>Официальная страница игры Bloodborne.</p>
-        <a href="https://www.playstation.com/" class="resource-link" target="_blank">Перейти на сайт</a>
-    </div>
-
-</div>
+</main>
 
 {% endblock %}

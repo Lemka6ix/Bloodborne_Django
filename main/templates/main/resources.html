@@ -1,45 +1,31 @@
+{% extends 'main/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang='ru'>
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Полезные ресурсы - Bloodborne</title>
-    <link rel="stylesheet" href="{% static 'main/style.css' %}?v=2">
-</head>
+<div class="resources">
 
-<body>
-<header>
-    <a href="{% url 'home' %}">
-        <img src="{% static 'main/images/logo.jpg' %}" alt="Bloodborne">
-    </a>
-    <nav>
-        <a href="{% url 'home' %}">Главное</a>
-        <a href="{% url 'about' %}">О Bloodborne</a>
-        <a href="{% url 'resources' %}">Полезные ресурсы</a>
-        <a href="{% url 'pool' %}">Обратная связь</a>
-    </nav>
-</header>
-
-<main>
-    <h1>Полезные ресурсы</h1>
-    <div class="resources">
-        <div class="resource">
-            <a href="https://www.bloodborne-wiki.com/" target="_blank">
-                <img src="{% static 'main/images/wiki.png' %}" alt="Bloodborne wiki">
-            </a>
-
-            <h2>Bloodborne Wiki</h2>
-            <p>
-                Подробная информация об оружии, предметах, персонажах, боссах и локациях Bloodborne.
-            </p>
-            <a class="resource-link"
-                href="https://www.bloodborne-wiki.com/"
-                target="_blank">Перейти на сайт</a>
-        </div>
+    <div class="resource">
+        <img src="{% static 'main/images/wiki.png' %}" alt="Bloodborne Wiki">
+        <h2>Bloodborne Wiki</h2>
+        <p>Вики-энциклопедия с информацией об игре, персонажах, оружии и локациях.</p>
+        <a href="https://bloodborne.wiki.fextralife.com/Bloodborne+Wiki" class="resource-link" target="_blank">Перейти на сайт</a>
     </div>
-</main>
-</body>
 
-</html>
+    <div class="resource">
+        <img src="{% static 'main/images/fandom.png' %}" alt="Bloodborne Fandom">
+        <h2>Bloodborne Fandom</h2>
+        <p>Материалы сообщества, посвящённые миру Bloodborne.</p>
+        <a href="https://bloodborne.fandom.com/wiki/Bloodborne_Wiki" class="resource-link" target="_blank">Перейти на сайт</a>
+    </div>
+
+    <div class="resource">
+        <img src="{% static 'main/images/playstation.png' %}" alt="PlayStation">
+        <h2>PlayStation</h2>
+        <p>Официальная страница игры Bloodborne.</p>
+        <a href="https://www.playstation.com/" class="resource-link" target="_blank">Перейти на сайт</a>
+    </div>
+
+</div>
+
+{% endblock %}
